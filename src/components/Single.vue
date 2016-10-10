@@ -2,13 +2,12 @@
   <div class="main-content-inner col-sm-12 col-md-8">
     <div id="primary" class="content-area">
       <main id="main" class="site-main" role="main">
-        <article
-          class="post type-post status-publish format-aside hentry category-uncategorized tag-kk tag-ll tag-ok post_format-post-format-aside">
+        <article class="post type-post status-publish format-aside hentry category-uncategorized tag-kk tag-ll tag-ok post_format-post-format-aside">
           <div class="post-inner-content">
             <header class="entry-header page-header">
               <h1 class="entry-title" style="display:block" v-html="title"></h1>
               <div class="entry-meta">
-                                <span class="posted-on">
+                <span class="posted-on">
                                     <i class="fa fa-calendar"></i>
                                     <a :href="link" rel="bookmark">
                                         <time class="entry-date published"
@@ -21,19 +20,19 @@
                                     <span class="author vcard">
                                         <a class="url fn n" href="http://localhost/author/admin/">admin</a>
                                     </span>
-                                </span>
+                </span>
                 <span class="cat-links">
                                     <i class="fa fa-folder-open-o"></i>
-                                    <a v-for="category of categories" track-by="name" v-link="'/category/'+category.key"
-                                       rel="category tag">{{category.name}} </a>
+                                    <router-link v-for="category of categories" track-by="name" :to="'/category/'+category.key"
+                                       rel="category tag">{{category.name}} </router-link>
                                 </span>
               </div>
             </header>
-            <div class="entry-content" v-html="text | marked">
+            <div class="entry-content" v-html="text">
             </div>
             <footer class="entry-meta">
               <div class="tagcloud" style="display: block;">
-                <a v-for="tag of tags" v-link="'/tag/'+tag.key" v-text="tag.name"></a>
+                <router-link v-for="tag of tags" :to="'/tag/'+tag.key" v-text="tag.name"></router-link>
               </div>
             </footer>
           </div>
@@ -44,11 +43,10 @@
           <h1 class="screen-reader-text">文章导航</h1>
           <div class="nav-links">
             <div class="nav-previous" v-if="prev_post && prev_post.name">
-              <a v-link="'/post/'+prev_post.id" rel="prev"><i
-                class="fa fa-chevron-left"></i> {{prev_post.name}}</a></div>
+              <router-link :to="'/post/'+prev_post.id" rel="prev"><i class="fa fa-chevron-left"></i> {{prev_post.name}}</router-link>
+            </div>
             <div class="nav-next" v-if="next_post && prev_post.name">
-              <a v-link="'/post/'+next_post.id" rel="next">{{next_post.name}} <i
-                class="fa fa-chevron-right"></i></a>
+              <router-link :to="'/post/'+next_post.id" rel="next">{{next_post.name}} <i class="fa fa-chevron-right"></i></router-link>
             </div>
           </div>
         </nav>
@@ -58,7 +56,8 @@
 </template>
 
 <script>
-  import {setCurrentPost, updateTitle} from '../actions'
+  import {setCurrentPost, updateTitle} from '../actions';
+  import markdown from 'marked';
   export default{
     route: {
       data(){
@@ -83,7 +82,7 @@
         cid: state=>state.currentPost.cid,
         title: state=>state.currentPost.title,
         slug: state=>state.currentPost.slug,
-        text: state=>state.currentPost.text,
+        text: markdown(state=>state.currentPost.text || ''),
         created: state=>state.currentPost.created,
         modified: state=>state.currentPost.modified,
         allowComment: state=>state.currentPost.allowComment,

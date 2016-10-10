@@ -7,7 +7,7 @@ require 'json/ext'
 $page_size = 8
 
 module Blog
-    DB = Sequel.connect('mysql2://user:pass@127.0.0.1/typecho')
+    DB = Sequel.connect('mysql2://root:ivanc21@127.0.0.1/typecho')
     Sequel::Model.instance_eval{ plugin :json_serializer }
     
 

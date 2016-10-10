@@ -18,9 +18,9 @@
       <aside class="widget widget_tag_cloud">
         <h3 class="widget-title">标签</h3>
         <div class="tagcloud" style="display: block;">
-          <a v-for="tag of tags" v-link="'/tag/'+tag.slug" class="tag-link-4 tag-link-position-1"
-             title="{{tag.count}}条"
-             style="font-size: 8pt;">{{tag.name}}</a>
+          <router-link v-for="tag of tags" :to="'/tag/'+tag.slug" class="tag-link-4 tag-link-position-1"
+             :title="tag.count + '条'"
+             style="font-size: 8pt;">{{tag.name}}</router-link>
         </div>
       </aside>
       <aside class="widget widget_categories">
@@ -28,7 +28,7 @@
         <div class="cats-widget">
         <ul>
           <li class="cat-item cat-item-1" v-for="category of categories">
-            <a v-link="'/category/' + category.slug" title="{{category.count}}条">{{category.name}}</a>
+            <router-link :to="'/category/' + category.slug" :title="category.count + '条'">{{category.name}}</router-link>
             <span v-text="category.count"></span>
           </li>
         </ul>

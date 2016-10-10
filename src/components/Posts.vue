@@ -7,10 +7,10 @@
           <h1 class="screen-reader-text">文章导航</h1>
           <div class="nav-links">
             <div class="nav-previous" v-if="has_prev">
-              <a v-link="'/posts/'+(current_page - 1)"><i class="fa fa-chevron-left"></i> 较新的文章</a>
+              <router-link :to="'/posts/'+(current_page - 1)"><i class="fa fa-chevron-left"></i> 较新的文章</router-link>
             </div>
             <div class="nav-next" v-if="has_next">
-              <a v-link="'/posts/'+ (current_page + 1)">较旧的文章 <i class="fa fa-chevron-right"></i></a>
+              <router-link :to="'/posts/'+ (current_page + 1)">较旧的文章 <i class="fa fa-chevron-right"></i></router-link>
             </div>
           </div>
         </nav>
@@ -37,7 +37,7 @@
     route: {
       data(){
         this.updateTitle();
-        return this.setCurrentPage(this.$route.params.page);
+        return this.current_page;
       }
     },
     computed: {

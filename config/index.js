@@ -23,7 +23,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             '/api': {
-                target: 'http://127.0.0.1:4567/api',
+                target: 'https://shyling.com/api',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''

@@ -14,10 +14,10 @@
     "font-awesome": "^4.6.3",
     "jquery": "^3.1.0",
     "marked": "^0.3.6",
-    "vue": "^1.0.21",
-    "vue-resource": "^0.9.3",
-    "vue-router": "^0.7.13",
-    "vuex": "^1.0.0-rc.2"
+    "vue": "^2.0.1",
+    "vue-resource": "^1.0.3",
+    "vue-router": "^2.0.0",
+    "vuex": "^2.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -27,25 +27,25 @@
     "babel-preset-stage-2": "^6.0.0",
     "babel-register": "^6.0.0",
     "connect-history-api-fallback": "^1.1.0",
-    "css-loader": "^0.23.0",
+    "css-loader": "^0.25.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.8.4",
+    "file-loader": "^0.9.0",
     "function-bind": "^1.0.2",
     "html-webpack-plugin": "^2.8.1",
-    "http-proxy-middleware": "^0.12.0",
+    "http-proxy-middleware": "^0.17.2",
     "json-loader": "^0.5.4",
-    "ora": "^0.2.0",
-    "shelljs": "^0.6.0",
+    "ora": "^0.3.0",
+    "shelljs": "^0.7.4",
     "url-loader": "^0.5.7",
-    "vue-hot-reload-api": "^1.2.0",
+    "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.0.0",
-    "vue-loader": "^8.3.0",
+    "vue-loader": "^9.5.1",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0",
-    "webpack-merge": "^0.8.3"
+    "webpack-merge": "^0.14.1"
   }
 }

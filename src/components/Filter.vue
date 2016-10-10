@@ -8,16 +8,15 @@
           </header>
           <div class="page-content">
             <p>抱歉，没有符合的搜索结果，请尝试其他的关键词</p>
-              <div class="input-group">
-                <label class="screen-reader-text" for="s">Search for:</label>
-                <input type="text" class="form-control search-query" placeholder="Search…"
-                       v-model="$route.params.query" id="s" title="Search for:">
-                <span class="input-group-btn">
+            <div class="input-group">
+              <label class="screen-reader-text" for="s">Search for:</label>
+              <input type="text" class="form-control search-query" placeholder="Search…" v-model="$route.params.query" id="s" title="Search for:">
+              <span class="input-group-btn">
                   <button @click="search" type="button" class="btn btn-default" value="Search">
                     <span class="glyphicon glyphicon-search"></span>
-                  </button>
-                </span>
-              </div>
+              </button>
+              </span>
+            </div>
           </div>
         </section>
       </main>
@@ -25,18 +24,19 @@
         <header class="page-header">
           <h1 class="page-title"><span v-html="$route.params.query"></span> 的搜索结果：</h1>
         </header>
-        <article class="page type-page status-publish hentry" v-for="article of searchResult" track-by="cid">
+        <article class="page type-page status-publish hentry" v-for="article of searchResult" :key="article.cid">
           <div class="blog-item-wrap">
-            <a v-link="'/post/'+article.slug" :title="article.title"></a>
+            <router-link :to="'/post/'+article.slug" :title="article.title"></router-link>
             <div class="post-inner-content">
               <header class="entry-header page-header">
-                <h2 class="entry-title"><a v-link="'/post/'+article.slug" rel="bookmark" v-html="article.title"></a>
+                <h2 class="entry-title">
+                  <router-link :to="'/post/'+article.slug" rel="bookmark" v-html="article.title"></router-link>
                 </h2>
               </header>
               <div class="entry-summary">
-                <p v-html="article.text | marked"></p>
+                <p v-html="marked(article.text)"></p>
                 <p>
-                  <a class="btn btn-default read-more" v-link="'/post/'+article.slug">查看更多</a>
+                  <router-link class="btn btn-default read-more" :to="'/post/'+article.slug">查看更多</router-link>
                 </p>
               </div>
             </div>
@@ -48,8 +48,9 @@
 </template>
 
 <script>
-  import Post from './Post.vue'
-  import {search, resetSearch} from '../actions'
+  import Post from './Post.vue';
+  import markdown from "marked";
+  import {search, resetSearch} from '../actions';
   export default{
     route: {
       data(){
@@ -63,6 +64,9 @@
     methods: {
       search(){
         this.$router.go(`/search/${this.$route.params.query}`);
+      },
+      marked(text){
+        return markdown(text || '');
       }
     },
     vuex: {
